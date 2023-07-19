@@ -21,7 +21,7 @@ class DelimitedStream(FileStream):
     def get_rows(self) -> Generator[dict[str | Any, str | Any], None, None]:
         """Retrive all rows from all *SVs.
 
-        Arbitrary change.
+        Arbitrary change 2.
 
         Yields:
             A dictionary containing information about a row in a *SV.
