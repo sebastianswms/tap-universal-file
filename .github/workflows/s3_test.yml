@@ -3,12 +3,16 @@
 name: Test tap-universal-file
 
 on:
-  workflow_dispatch:
-    inputs: {}
+  pull_request_target:
+    types: [opened, synchronize, reopened]
 
-jobs:
-  pytest:
-    if: github.event.review.state == 'approved'
+  authorize:
+    environment: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name != github.repository && 'external' || 'internal' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
+  pytest-s3:
+    needs: authorize
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -36,4 +40,4 @@ jobs:
         poetry install --extras=s3
     - name: Test with pytest (requires repo secrets)
       run: |
-        poetry run pytest
+        poetry run pytest -k 'test_s3_execution'
