@@ -1,6 +1,6 @@
 ### A CI workflow template that makes use of repository secrets and therefore runs only on manual dispatch.
 
-name: Test tap-universal-file
+name: S3-Test tap-universal-file
 
 on:
   pull_request_target:
