@@ -28,6 +28,8 @@ class FileStream(Stream):
     ) -> None:
         """Duplicates superclass functionality but runs replication config before init.
 
+        Arbitrary change.
+
         Raises:
             RuntimeError: If replication config is invalid.
         """
